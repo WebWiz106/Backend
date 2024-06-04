@@ -9,6 +9,7 @@ from controllers.rooms import room_controller
 from controllers.engine import booking_controller
 from controllers.inventory import roominventory
 from controllers.price import price_controller
+from controllers.order import order_controller
 
 
 logging.basicConfig(format=settings.LOG_FORMATTER)
@@ -24,7 +25,7 @@ app.register_blueprint(room_controller,url_prefix="/rooms")
 app.register_blueprint(roominventory,url_prefix="/inventory")
 app.register_blueprint(price_controller,url_prefix="/price")
 app.register_blueprint(booking_controller,url_prefix="/bookings")
-
+app.register_blueprint(order_controller,url_prefix="/order")
 
 if __name__ == '__main__':
     app.config['DEBUG'] = settings.DEBUG

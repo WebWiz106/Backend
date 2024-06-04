@@ -804,17 +804,17 @@ def get_id(booking_count):
 #         logging.error(f"Error in getting date in range:{e}")
 
 
-# def getGateways(ndid,hid):
-#     try:
-#         # print(ndid)
-#         # print(hid)
-#         engine = db.BookingEngineData.find_one({"ndid":ndid,"hId":hid})
-#         # print(engine)
-#         # print(engine["Details"]["Gateway"])
-#         gateway = engine["Details"]["Gateway"]
-#         return gateway.get("Type"), gateway.get("API_KEY"),gateway.get("SECRET_KEY")
-#     except Exception as e:
-#         logging.error(f"Error in getting data:{e}")
+def getGateways(ndid,hid):
+    try:
+        # print(ndid)
+        # print(hid)
+        engine = db.Webjini_Engine_Users.find_one({"jiniId":ndid,"hotelId":hid})
+        # print(engine)
+        # print(engine["Details"]["Gateway"])
+        gateway = engine["Details"]["Gateway"]
+        return gateway.get("Type"), gateway.get("API_KEY"),gateway.get("SECRET_KEY")
+    except Exception as e:
+        logging.error(f"Error in getting data:{e}")
 
 # def getBookingDetailForCancellation(ndid,hId,bookingId):
 #     try:

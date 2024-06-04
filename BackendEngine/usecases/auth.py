@@ -72,7 +72,7 @@ from utils import db
 #        "Discover the epitome of luxury and hospitality at [hotelName], a beacon of elegance in the heart of [hotelCity]. Boasting an unrivaled location, exquisite accommodations, and unparalleled service, our hotel offers discerning travelers an unforgettable experience from the moment they arrive. Step into our opulent lobby and be transported to a world of refined indulgence, where every detail is meticulously curated to exceed your expectations. Whether you're unwinding in one of our sumptuously appointed guest rooms, indulging in a gourmet meal at our acclaimed restaurant, or pampering yourself with a rejuvenating spa treatment, [hotelName] promises a stay that is nothing short of extraordinary. From business travelers seeking a sophisticated retreat to leisure guests looking to immerse themselves in the vibrant energy of [hotelCity], our hotel caters to every need with unparalleled grace and style.",
 #        "At [hotelName], located in the heart of [hotelCity], we redefine the notion of luxury with our unwavering commitment to personalized service and attention to detail. Our dedicated team of hospitality professionals stands ready to anticipate your every need, ensuring that your stay with us is nothing short of perfection. Whether you're visiting for business or pleasure, our goal is to exceed your expectations at every turn, leaving you with cherished memories that linger long after your departure.","Immerse yourself in the rich tapestry of [hotelCity] while staying at [hotelName], where our prime location offers unparalleled access to the city's most iconic landmarks and attractions. From strolling through historic neighborhoods to sampling local delicacies at bustling markets, the possibilities for exploration are endless. And when it's time to retreat from the hustle and bustle of the city, [hotelName] welcomes you back with open arms, offering a serene oasis where you can recharge and rejuvenate in utmost comfort and style.",
 #        "Indulge in the ultimate culinary experience at [hotelName], where our world-class restaurants showcase the finest in local and international cuisine. From innovative fusion dishes to classic favorites reimagined with a modern twist, our talented chefs tantalize your taste buds with every bite. Pair your meal with a selection from our extensive wine list or signature cocktails crafted by our skilled mixologists, and elevate your dining experience to new heights. Whether you're savoring a leisurely breakfast overlooking the city skyline or enjoying a romantic dinner under the stars, dining at [hotelName] is an experience to remember.",
-#        "At [hotelName], we believe that true luxury lies in the details. From the plush linens adorning your bed to the carefully curated artwork that graces our walls, every element of your stay is designed to evoke a sense of indulgence and sophistication. Our commitment to excellence extends to every corner of our property, ensuring that each moment spent with us is infused with elegance and charm.",
+#        "At [hotelName], we believe that True luxury lies in the details. From the plush linens adorning your bed to the carefully curated artwork that graces our walls, every element of your stay is designed to evoke a sense of indulgence and sophistication. Our commitment to excellence extends to every corner of our property, ensuring that each moment spent with us is infused with elegance and charm.",
 #        "Step into our sanctuary of serenity at [hotelName], where our tranquil spa offers a blissful escape from the stresses of everyday life. Let our expert therapists pamper you with a range of holistic treatments and therapies, each designed to restore balance and harmony to your mind, body, and soul. Whether you opt for a soothing massage, a rejuvenating facial, or a blissful body wrap, you'll emerge feeling refreshed, rejuvenated, and ready to take on the world.","Experience the height of indulgence with our exclusive suite accommodations at [hotelName]. From expansive living areas and private balconies to luxurious amenities and personalized service, our suites offer a sanctuary of comfort and refinement unlike any other. Whether you're traveling for business or pleasure, our suites provide the perfect retreat, where you can unwind in style and immerse yourself in unparalleled luxury.","Embark on a culinary journey like no other at [hotelName], where our diverse dining options cater to every palate and preference. Start your day with a hearty breakfast buffet featuring an array of international delicacies, or enjoy a leisurely lunch by the pool with fresh salads and grilled specialties. In the evening, savor the flavors of the Mediterranean at our signature restaurant, where expertly crafted dishes and a carefully curated wine list promise an unforgettable dining experience.","Unwind in style at our rooftop bar, where panoramic views of the city skyline provide the perfect backdrop for an evening of relaxation and revelry. Sip on handcrafted cocktails crafted by our skilled mixologists as you soak in the ambiance, or sample a selection of premium spirits and wines from around the world. With live music and a vibrant atmosphere, our rooftop bar is the ideal spot to toast to life's special moments and create memories that last a lifetime.","At [hotelName], we understand that travel is about more than just a destination – it's about the journey. That's why we go above and beyond to create experiences that inspire and delight, from personalized welcome amenities to curated local experiences that showcase the best of [hotelCity]. Whether you're exploring the city's vibrant arts scene or embarking on a culinary adventure through its bustling markets, we're here to help you make the most of your time with us and create memories that last a lifetime.","Elevate your stay with our array of personalized services and amenities at [hotelName]. From valet parking and luggage assistance to 24-hour room service and turndown service, our dedicated team is on hand to ensure that your every need is met with the utmost care and attention. Whether you're celebrating a special occasion or simply seeking a relaxing getaway, we're here to make your stay with us truly unforgettable."]
 
 def register_user_webjini(maintenance_details):
@@ -469,43 +469,43 @@ def FetchUserForBookingAuth(token):
         
 #         #*DONE
 #         "Facilities":{
-#                         "FrontDesk":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Wifi":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Board":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Rooftop_Cafe":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Health_Club":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Express_checks":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Wave_Bar":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Conference_Hall":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Alchemy":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Suncafe":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Doctor":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Spa":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Babysitting":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Electricity":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Concierge":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Conditinoer":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Security":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "TravelTour":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Currency_Exchange":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Laundry":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Casino":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Parking":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Elevator":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Jacuzzi":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Room_Service":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Accept_Cards":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Child_Care":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Conference_Rooms":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Fitness_Center":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Health_&_Beauty":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Restaurant":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Swimming_Pool":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Housekeep":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "cofeemaker":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "minibar":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "Evpoint":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False,
-#                         "SaunaStream":True if maintain_data.get("Facilities").get("FrontDesk")=="true" else False
+#                         "FrontDesk":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Wifi":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Board":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Rooftop_Cafe":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Health_Club":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Express_checks":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Wave_Bar":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Conference_Hall":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Alchemy":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Suncafe":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Doctor":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Spa":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Babysitting":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Electricity":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Concierge":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Conditinoer":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Security":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "TravelTour":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Currency_Exchange":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Laundry":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Casino":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Parking":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Elevator":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Jacuzzi":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Room_Service":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Accept_Cards":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Child_Care":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Conference_Rooms":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Fitness_Center":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Health_&_Beauty":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Restaurant":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Swimming_Pool":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Housekeep":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "cofeemaker":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "minibar":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "Evpoint":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False,
+#                         "SaunaStream":True if maintain_data.get("Facilities").get("FrontDesk")=="True" else False
 
 #                 },
         
@@ -876,8 +876,80 @@ def activateBookingEngineTool(maintenance_details):
             }})
             
            
-            db.Webjini_Engine_Users.insert_one({"webjiniId":jiniid,"Domain":hotelProfile.get("domain"),"hotelId":maintenance_details.get("hotelId"),"Data":{}})
-            return True , "https://jini.webjini.com/?id="+jiniid+"&hotelId="+maintenance_details.get("hotelId")
+            db.Webjini_Engine_Users.insert_one({
+                "jiniId":jiniid,
+                "Domain":hotelProfile.get("domain"),
+                "hotelId":maintenance_details.get("hotelId"),
+                "Details":{
+                    "AboutUs": "About us of booking engine",
+                    "BgImage": "https://images.unsplash.com/photo-1701566352550-98f803b3c675?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjA3MDl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDkyODk0NzR8&ixlib=rb-4.0.3&q=80&w=1080",
+                    "CancellationPolicy": "Cancellation policy",
+                    "Clarity": "",
+                    "Colors": {
+                        "BackgroundColor": "#311807",
+                        "BoardColor": "#0A3A75",
+                        "ButtonColor": "#f78708"
+                    },
+                    "Footer": {
+                        "AboutText": "At our Hotel you will feel great to stay and have a good fun",
+                        "Address": "address is here",
+                        "City": "Dhampur",
+                        "Email": "divyanshus590@gmail.com",
+                        "Logo": "https://eazotel-client-images.s3.ap-south-1.amazonaws.com/eazyhotel/images/7ee5d2d7-4427-4b5c-8c92-ee048cc58080.webp",
+                        "NewsLetterText": "Hi this text is for newsletter",
+                        "Phone": "9119059285",
+                        "WhatsApp": "9119059286"
+                    },
+                    "Gateway": {
+                        "API_KEY": "rzp_test_UZ0V9jh3jMC0C9",
+                        "SECRET_KEY": "XHctZxmnMhzkkwcAlDtF0Xuc",
+                        "Type": "Razorpay"
+                    },
+                    "HotelName": "Eazy Hotel",
+                    "Labels": {
+                        "ConfirmButton": "Book",
+                        "PayButton": "Pay Now",
+                        "ReserveBoard": "Reservation Here",
+                        "ReserveButton": "Look For Rooms"
+                        },
+                    
+                    "Links": {
+                        "Facebook": "",
+                        "FacebookRequired": False,
+                        "Instagram": "",
+                        "InstagramRequired": False,
+                        "Linkedin": "",
+                        "LinkedinRequired": False,
+                        "Pinterest": "",
+                        "PinterestRequired": False,
+                        "Reddit": "",
+                        "RedditRequired": False,
+                        "Snapchat": "",
+                        "SnapchatRequired": False,
+                        "Tripadvisor": "",
+                        "TripadvisorRequired": False,
+                        "Tripadvisors": False,
+                        "Tumblr": "",
+                        "TumblrRequired": False,
+                        "Twitter": "",
+                        "TwitterRequired": False,
+                        "Whatsapp": "",
+                        "WhatsappRequired": False,
+                        "Youtube": "",
+                        "YoutubeRequired": False
+                    },
+                    
+                    "Location": "https://www.google.com/maps/embed/v1/place?key=AIzaSyB7275VpUoxX56JWDwoISq00bXcq2LSHtI&q=Eazy%20Hotel+addr+State+Dhampur+India",
+                    
+                    "PrivacyPolicy": "Privacy policy",
+                    "TermsConditions": "TermsConditions policy",
+                    "addTax": True,
+                    "isOnlinePayment": False,
+                    "isPayatHotel": False,
+                    "isSemiPayment": False
+                }})
+            
+            return True , "https://jini.webjini.com/?hotelid="+jiniid+"&locationid="+maintenance_details.get("hotelId")
         else:
             return False,"Engine Exists"
     except:

@@ -6,7 +6,7 @@ import settings
 import logging
 
 from bson import json_util
-from usecases import mail_usecase,booking_usecase
+# from usecases import mail_usecase,booking_usecase
 import random
 # from model.bookings import Bookings
 # from model.booking_item import BookingItem
@@ -34,64 +34,61 @@ from utils import db
 #         return False, "Error Occured"
 
 
-# def get_engine_details(ndid, hId):
-#     try:
-#         logging.info(f"{ndid}")
-#         data = db.BookingEngineData.find_one({"ndid": ndid, "hId": hId})
-#         logging.info(f"{data}")
-#         if data and "Details" in data:
-#             logging.info(f"Details found: {data['Details']}")
-#             return data["Details"]
-#         else:
-#             logging.warning(
-#                 "Details not found for ndid: {} and hId: {}".format(ndid, hId))
-#             return False
-#     except Exception as ex:
-#         LOGGER.error("Unabel to get engine datas:{}".format(ex))
-#         logging.error(f"{ex}")
-#         return False
+def get_engine_details(ndid, hId):
+    try:
+        logging.info(f"{ndid}")
+        data = db.Webjini_Engine_Users.find_one({"jiniId": ndid, "hotelId": hId})
+        logging.info(f"{data}")
+        print(data)
+        if data and "Details" in data:
+            logging.info(f"Details found: {data['Details']}")
+            return data["Details"]
+        else:
+            logging.warning(
+                "Details not found for ndid: {} and hId: {}".format(ndid, hId))
+            return False
+    except Exception as ex:
+        LOGGER.error("Unabel to get engine datas:{}".format(ex))
+        logging.error(f"{ex}")
+        return False
 
 
-# def get_engine_webiste(id):
-#     try:
-#         logging.info(f"{id}")
-#         website_data = db.Zucks_hotellinks.find_one({"ndid": id})
-#         if website_data:
-#             dashboard_link = website_data.get("dashboardLink")
-#             website_link = website_data.get("websiteLink")
+def get_engine_webiste(id):
+    try:
+        logging.info(f"{id}")
+        website_data = db.Webjini_Profiles.find_one({"webjiniId": id})
+        if website_data:
+            website_link = website_data.get("toolsAccess").get("website").get("link")
 
-#             if dashboard_link and dashboard_link != "None":
-#                 logging.info(f"Dashboard link found: {dashboard_link}")
-#                 return dashboard_link
-#             elif website_link:
-#                 logging.info(f"Website link found: {website_link}")
-#                 return website_link
-#             else:
-#                 logging.warning("No valid links found for ID: {}".format(id))
-#                 return False
-#         else:
-#             logging.warning("No data found for ID: {}".format(id))
-#             return False
-#     except Exception as ex:
-#         LOGGER.error("Unabel to get engine websites:{}".format(ex))
-#         logging.error(f"{ex}")
-#         return False, "Error Occured"
+            if website_link!="None":
+                logging.info(f"Website link found: {website_link}")
+                return website_link
+            else:
+                logging.warning("No valid links found for ID: {}".format(id))
+                return False
+        else:
+            logging.warning("No data found for ID: {}".format(id))
+            return False
+    except Exception as ex:
+        LOGGER.error("Unabel to get engine websites:{}".format(ex))
+        logging.error(f"{ex}")
+        return False, "Error Occured"
 
 
-# def get_profile(id):
-#     try:
-#         logging.info(f"{id}")
-#         profile = db.Zucks_profile.find_one({"uId": id})
-#         if profile:
-#             logging.info(f"{profile}")
-#             return profile
-#         else:
-#             logging.warning(f"No profile found for ID: {id}")
-#             return False
-#     except Exception as ex:
-#         LOGGER.error("Unabel to get Profile:{}".format(ex))
-#         logging.error(f"{ex}")
-#         return False
+def get_profile(id):
+    try:
+        logging.info(f"{id}")
+        profile = db.Webjini_Profiles.find_one({"webjiniId": id})
+        if profile:
+            logging.info(f"{profile}")
+            return profile
+        else:
+            logging.warning(f"No profile found for ID: {id}")
+            return False
+    except Exception as ex:
+        LOGGER.error("Unabel to get Profile:{}".format(ex))
+        logging.error(f"{ex}")
+        return False
 
 
 # def create_query_rates(booking_details, id):

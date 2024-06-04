@@ -64,7 +64,7 @@ def editUser_password():
         return jsonify({"Status":False})
 
 @auth_controller.route("/createprofile",methods=["POST"])
-def createWebsiteEazotel():
+def createWebsitewebjini():
     try:
         maintenance_details = request.get_json(force=True)
 

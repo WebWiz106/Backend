@@ -4,7 +4,7 @@ import settings
 import utils
 from bson import json_util
 
-from usecases import booking
+from usecases import booking,engine
 from flask import Blueprint, jsonify, request
 from datetime import datetime, date, timedelta
 import logging
@@ -30,23 +30,23 @@ def hi():
 
 
 # # ?:- DONE
-# @booking_controller.route("/getenginedetails/<id>/<hId>", methods=["GET"])
-# def get_engine_details_for_engine(id, hId):
-#     try:
-#         logging.info(f"{id}")
-#         print(hId)
-#         message = booking_engine_usecase.get_engine_details(id, hId)
-#         # print(message)
-#         website = booking_engine_usecase.get_engine_webiste(id)
-#         profile = booking_engine_usecase.get_profile(id)
-#         logging.info(f"{message} , {website}, {profile}")
-#         if message and website and profile:
-#             return jsonify({"Status": True, "Details": message, "website": website, "Profile": json.loads(json_util.dumps(profile))})
-#         else:
-#             return jsonify({"Status": False})
-#     except Exception as ex:
-#         logging.info(f"{ex}")
-#         return ({"Status": False, "Message": "{}".format(ex)}), 500
+@booking_controller.route("/getenginedetails/<id>/<hId>", methods=["GET"])
+def get_engine_details_for_engine(id, hId):
+    try:
+        logging.info(f"{id}")
+        print(hId)
+        message = engine.get_engine_details(id, hId)
+        
+        website = engine.get_engine_webiste(id)
+        profile = engine.get_profile(id)
+        logging.info(f"{message} , {website}, {profile}")
+        if website and profile:
+            return jsonify({"Status": True, "Details": message, "website": website, "Profile": json.loads(json_util.dumps(profile))})
+        else:
+            return jsonify({"Status": False})
+    except Exception as ex:
+        logging.info(f"{ex}")
+        return ({"Status": False, "Message": "{}".format(ex)}), 500
 
 # # ?done
 
