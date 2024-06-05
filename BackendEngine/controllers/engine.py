@@ -64,17 +64,17 @@ def create_booking():
         return ({"Status": False, "Message": "{}".format(ex)}), 500
 
 
-# @booking_controller.route("/update", methods=["POST"])
-# def update_booking():
-#     try:
-#         booking_data = request.get_json(force=True)
-#         logging.info(f"{booking_data}")
-#         status, message = booking_usecase.update_booking(booking_data)
-#         logging.info(f"{status} , {message}")
-#         return jsonify({"status": status, "message": message})
-#     except Exception as ex:
-#         logging.info(f"{ex}")
-#         return ({"Status": False, "Message": "{}".format(ex)}), 500
+@booking_controller.route("/update", methods=["POST"])
+def update_booking():
+    try:
+        booking_data = request.get_json(force=True)
+        logging.info(f"{booking_data}")
+        status, message,bookingId = booking.update_booking(booking_data)
+        logging.info(f"{status} , {message}")
+        return jsonify({"status": status, "message": message,"bookingId":bookingId})
+    except Exception as ex:
+        logging.info(f"{ex}")
+        return ({"Status": False, "Message": "{}".format(ex)}), 500
 
 
 # @booking_controller.route("/update/guest", methods=["POST"])
@@ -240,22 +240,22 @@ def get_all_bookings_of_engine(token, hId):
 # # ?:- DONE
 
 
-# @booking_controller.route("/payment/status/<status>", methods=["POST"])
-# def change_booking_status(status):
-#     try:
-#         booking_details = request.get_json(force=True)
-#         logging.info(f"{booking_details}")
-#         print(booking_details)
-#         token = booking_details.get("token")
-#         booking_id = booking_details.get("bookingId")
-#         hId = booking_details.get("hId")
-#         message = booking_usecase.cancel_booking_payment_status(
-#             token, booking_id, status, hId)
-#         logging.info(f"{message}")
-#         return jsonify({"Status": message})
-#     except Exception as ex:
-#         logging.error(f"{ex}")
-#         return ({"Message": "{}".format(ex)}), 500
+@booking_controller.route("/payment/status/<status>", methods=["POST"])
+def change_booking_status(status):
+    try:
+        booking_details = request.get_json(force=True)
+        logging.info(f"{booking_details}")
+        print(booking_details)
+        token = booking_details.get("token")
+        booking_id = booking_details.get("bookingId")
+        hId = booking_details.get("hId")
+        message = booking.cancel_booking_payment_status(
+            token, booking_id, status, hId)
+        logging.info(f"{message}")
+        return jsonify({"Status": message})
+    except Exception as ex:
+        logging.error(f"{ex}")
+        return ({"Message": "{}".format(ex)}), 500
     
 
 

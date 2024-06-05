@@ -15,77 +15,78 @@ from utils import db
 
 #================================ROOM ALLOCATION============================================
 
-# def checker_overlap(st1,en1,st2,en2):
-#     print(st1,en1,st2,en2)
-#     st1 = datetime.strptime(st1, '%Y-%m-%d')
-#     en1 = datetime.strptime(en1, '%Y-%m-%d')
-#     st2 = datetime.strptime(st2, '%Y-%m-%d')
-#     en2 = datetime.strptime(en2, '%Y-%m-%d')
-#     print(st1,en1,st2,en2)
-#     #overlap pe return true
-#     if st1<st2:
-#         if en1>st2:
-#             return True
-#         else:
-#             return False
-#     elif st1>=st2 and st1<en2:
-#         return True
-#     return False    
+def checker_overlap(st1,en1,st2,en2):
+    print(st1,en1,st2,en2)
+    st1 = datetime.strptime(st1, '%Y-%m-%d')
+    en1 = datetime.strptime(en1, '%Y-%m-%d')
+    st2 = datetime.strptime(st2, '%Y-%m-%d')
+    en2 = datetime.strptime(en2, '%Y-%m-%d')
+    print(st1,en1,st2,en2)
+    #overlap pe return true
+    if st1<st2:
+        if en1>st2:
+            return True
+        else:
+            return False
+    elif st1>=st2 and st1<en2:
+        return True
+    return False    
     
 
 
 
-# def room_Number_allocation(hId,ndid,bookings,checkin, checkout,bookingId):
+def room_Number_allocation(hId,ndid,bookings,checkin, checkout,bookingId):
     
-#     allocated_room_number=[]
-#     for booking in bookings:
-#         rtype = booking["RoomType"]
-#         qty = booking["Qty"]
-#         if qty!=0:
-#             query=db.Rooms.find_one({"hId":hId,"ndid":ndid,"roomType":rtype})
-#             roomtypearr=query.get("roomNumbers")
-#             maintenance=query.get("inMaintanance")
-#             # maintenance = [{
-#             #     "roomNumber": roomNumber,
-#             #     "Message": Message,
-#             #     "start": start,
-#             #     "end": end
-#             # }]
-#             print(roomtypearr)#--->QTY ele chahiye 
-#             allocated=0
-#             for room in roomtypearr:
-#                 #maintenance check
-#                 chk=True
-#                 for obj in maintenance:
-#                     rNo=obj["roomNumber"]
-#                     start=obj["start"]
-#                     end=obj["end"]
-#                     if rNo==room:
-#                         if checker_overlap(checkin,checkout,start,end):
-#                             chk=False
-#                 print("CHECKOUT","CHECKOUT")
-#                 print(checkin,checkout)
-#                 print("DIVYANSHu")
-#                 all_bookings=db.Bookings.find({"hId":hId,"ndid":ndid})
-#                 for already_booking in all_bookings:
-#                     print("Abhay")
-#                     print(already_booking.get("roomNumbers"))
-#                     if room in already_booking.get("roomNumbers"):
-#                         print(checker_overlap(checkin,checkout,already_booking.get("checkIn"),already_booking.get("checkOut")))
-#                         if checker_overlap(checkin,checkout,already_booking.get("checkIn"),already_booking.get("checkOut")):
-#                             chk=False
-#                 print("NIKLA")
-#                 print(room,chk)
-#                 #if pass in above check then allocated+=1
-#                 if chk:
-#                     allocated+=1
-#                     allocated_room_number.append(room)
-#                 if allocated==qty:
-#                     break
+    allocated_room_number=[]
+    for booking in bookings:
+        rtype = booking["RoomType"]
+        qty = booking["Qty"]
+        if qty!=0:
+            query=db.Webjini_rooms.find_one({"hId":hId,"jiniId":ndid,"roomType":rtype})
+
+            roomtypearr=query.get("roomNumbers")
+            maintenance=query.get("inMaintanance")
+            # maintenance = [{
+            #     "roomNumber": roomNumber,
+            #     "Message": Message,
+            #     "start": start,
+            #     "end": end
+            # }]
+            print(roomtypearr)#--->QTY ele chahiye 
+            allocated=0
+            for room in roomtypearr:
+                #maintenance check
+                chk=True
+                for obj in maintenance:
+                    rNo=obj["roomNumber"]
+                    start=obj["start"]
+                    end=obj["end"]
+                    if rNo==room:
+                        if checker_overlap(checkin,checkout,start,end):
+                            chk=False
+                print("CHECKOUT","CHECKOUT")
+                print(checkin,checkout)
+                print("DIVYANSHu")
+                all_bookings=db.Webjini_Bookings.find({"hId":hId,"jiniId":ndid})
+                for already_booking in all_bookings:
+                    print("Abhay")
+                    print(already_booking.get("roomNumbers"))
+                    if room in already_booking.get("roomNumbers"):
+                        print(checker_overlap(checkin,checkout,already_booking.get("checkIn"),already_booking.get("checkOut")))
+                        if checker_overlap(checkin,checkout,already_booking.get("checkIn"),already_booking.get("checkOut")):
+                            chk=False
+                print("NIKLA")
+                print(room,chk)
+                #if pass in above check then allocated+=1
+                if chk:
+                    allocated+=1
+                    allocated_room_number.append(room)
+                if allocated==qty:
+                    break
     
-#     print(allocated_room_number)
-#     db.Bookings.update_one({"bookingId":bookingId,"hId":hId,"ndid":ndid},{"$set":{"roomNumbers":allocated_room_number}})
-#     return ""
+    print(allocated_room_number)
+    db.Webjini_Bookings.update_one({"bookingId":bookingId,"hId":hId,"jiniId":ndid},{"$set":{"roomNumbers":allocated_room_number}})
+    return ""
 
 
 # def room_Number_deallocation(hId,ndid,bookingId):
@@ -112,53 +113,52 @@ def create_booking(booking_details):
         return False, "{}".format(ex)
 
 # # # ?MODELS DONE
-# def update_booking(booking_details):
-#     try:
-#         logging.info(f"{booking_details}")
-#         ndid = booking_details.get("ndid")
-#         orderid = booking_details.get("orderid")
-#         paymentid = booking_details.get("paymentid")
-#         Status = booking_details.get("Status")
-#         hId = booking_details.get("hId")
-#         filter = {
-#             "ndid": ndid,
-#             "hId": hId,
-#             "payment.RefNo": orderid
-#         }
-#         hotelengine = db.BookingEngineData.find_one({"ndid": ndid, "hId": hId})
+def update_booking(booking_details):
+    try:
+        logging.info(f"{booking_details}")
+        ndid = booking_details.get("jiniId")
+        orderid = booking_details.get("orderid")
+        paymentid = booking_details.get("paymentid")
+        Status = booking_details.get("Status")
+        hId = booking_details.get("hId")
 
-#         existing_booking_data = db.Bookings.find_one(filter)
-#         if existing_booking_data:
-#             # Create a Booking object from existing data
-#             existing_booking = Bookings.from_dict(existing_booking_data)
-#             existing_booking.payment.status = Status if Status else existing_booking.payment.get(
-#                 "Status")
-#             existing_booking.payment.payId = paymentid if paymentid else existing_booking.payment.get(
-#                 "PayId")
-#             updated_booking_data = existing_booking.to_dict()
-#             result = db.Bookings.update_one(
-#                 filter, {"$set": updated_booking_data})
-#             domain = db.Zucks_profile.find_one(
-#                 {"uId": ndid})
-#             sendWith = "info@"+domain.get("domain")+".com"
-#             clientmail = domain.get("hotelEmail")
+        filter = {
+            "jiniId": ndid,
+            "hId": hId,
+            "payment.RefNo": orderid
+        }
+        # hotelengine = db.Webjini_Engine_Users.find_one({"jiniId": ndid, "hotelId": hId})
 
-#             # update
-#             checkindate = existing_booking_data.get('checkIn')
-#             checkoutdate = existing_booking_data.get('checkOut')
-#             bookings = existing_booking_data.get('Bookings')
-#             # update Inventory
-#             # print(bookings)
-#             room_Number_allocation(hId,ndid,bookings,checkindate,checkoutdate,existing_booking_data.get("bookingId"))
-#             updateInventory_decrease(
-#                 checkindate, checkoutdate, bookings, ndid, hId)
-#             logging.info(f"{True}")
-#             return True, "Success"
-#         else:
-#             return False, "Booking not found or not updated"
-#     except Exception as ex:
-#         logging.error(f"{ex}")
-#         return False, "{}".format(ex)
+        existing_booking_data = db.Webjini_Bookings.find_one(filter)
+        if existing_booking_data:
+            # Create a Booking object from existing data
+            existing_booking = Bookings.from_dict(existing_booking_data)
+            existing_booking.payment.status = Status if Status else existing_booking.payment.get(
+                "Status")
+            existing_booking.payment.payId = paymentid if paymentid else existing_booking.payment.get(
+                "PayId")
+            updated_booking_data = existing_booking.to_dict()
+            result = db.Webjini_Bookings.update_one(
+                filter, {"$set": updated_booking_data})
+            
+            
+            # update
+            checkindate = existing_booking_data.get('checkIn')
+            checkoutdate = existing_booking_data.get('checkOut')
+            bookings = existing_booking_data.get('Bookings')
+            # update Inventory
+            # print(bookings)
+            
+            print(existing_booking_data)
+            room_Number_allocation(hId,ndid,bookings,checkindate,checkoutdate,existing_booking_data.get("bookingId"))
+            updateInventory_decrease(checkindate, checkoutdate, bookings, ndid, hId)
+            logging.info(f"{True}")
+            return True, "Success",existing_booking_data.get("bookingId")
+        else:
+            return False, "Booking not found or not updated",""
+    except Exception as ex:
+        logging.error(f"{ex}")
+        return False, "{}".format(ex),""
 
 # # ?MODELS NOT DONE ROOMS
 # def check_list_of_rooms_available_daterange(booking_details):
@@ -225,24 +225,24 @@ def create_booking(booking_details):
 
 
 # # ?MODELS NOT DONE ROOMS
-# def updateInventory_decrease(checkin, checkout, bookingsarray, ndid, hId):
-#     try:
-#         dates = get_dates_in_range(checkin, checkout)
-#         for booking in bookingsarray:
-#             if booking['Qty'] > 0:
-#                 room = db.Rooms.find_one(
-#                     {"ndid": ndid, "hId": hId, "roomType": booking["RoomType"]})
-#                 inventory = room.get('inventoryStatus', {})
-#                 for d in dates:
-#                     if (str(d) in inventory):
-#                         inventory[str(d)] = int(inventory[str(d)]) - int(booking['Qty'])
-#                     else:
-#                         inventory[str(d)] = int(room.get('noOfRooms'))-int(booking['Qty'])
-#                 room = db.Rooms.find_one_and_update({"ndid": ndid, "hId": hId, "roomType": booking["RoomType"]}, {"$set": {
-#                     "inventoryStatus": inventory
-#                 }})
-#     except Exception as e:
-#         logging.error(f"Error Updating inventory increase:{e}")
+def updateInventory_decrease(checkin, checkout, bookingsarray, ndid, hId):
+    try:
+        dates = get_dates_in_range(checkin, checkout)
+        for booking in bookingsarray:
+            if booking['Qty'] > 0:
+                room = db.Webjini_rooms.find_one(
+                    {"jiniId": ndid, "hId": hId, "roomType": booking["RoomType"]})
+                inventory = room.get('inventoryStatus', {})
+                for d in dates:
+                    if (str(d) in inventory):
+                        inventory[str(d)] = int(inventory[str(d)]) - int(booking['Qty'])
+                    else:
+                        inventory[str(d)] = int(room.get('noOfRooms'))-int(booking['Qty'])
+                room = db.Webjini_rooms.find_one_and_update({"jiniId": ndid, "hId": hId, "roomType": booking["RoomType"]}, {"$set": {
+                    "inventoryStatus": inventory
+                }})
+    except Exception as e:
+        logging.error(f"Error Updating inventory increase:{e}")
 
 # # ?MODELS NOT DONE ROOMS
 # def updateInventory_increase(checkin, checkout, bookingsarray, ndid, hId):
@@ -614,49 +614,50 @@ def calculate_booking_total(booking_details, ndid, hId):
 #         return False, "{}".format(ex)
 
 # # ?MODELS DONE
-# def cancel_booking_payment_status(token, booking_id, status, hId):
-#     try:
-#         logging.info(f"{token},{booking_id},{status}")
-#         ndid = utils.get_ndid(token)
-#         print(ndid)
-#         print(hId)
-#         print(booking_id)
-#         booking_exists = db.Bookings.find_one({"ndid": ndid, "bookingId": booking_id,"hId":hId})
-#         if status == "SUCCESS" or status == "ADVANCED":
-#             print(1)
-#             print(booking_exists)
-#             if (booking_exists["payment"].get("Status") == "PENDING" or booking_exists["payment"].get("Status") == "CANCELLED"):
-#                 # update
-#                 print(2)
-#                 checkindate = booking_exists.get("checkIn")
-#                 checkoutdate = booking_exists.get("checkOut")
-#                 bookings = []
-#                 for ele in booking_exists.get("Bookings"):
-#                     bookings.append(ele)
-#                 # update Inventory
-#                 print(2)
-#                 room_Number_allocation(hId,ndid,bookings,checkindate,checkoutdate,booking_id)
-#                 updateInventory_decrease(
-#                     checkindate, checkoutdate, bookings, ndid, hId)
+def cancel_booking_payment_status(token, booking_id, status, hId):
+    try:
+        logging.info(f"{token},{booking_id},{status}")
+        jiniIduser = utils.Decode_jwt(token)
+        jiniid = jiniIduser.get("user")
+        print(jiniid)
+        print(hId)
+        print(booking_id)
+        booking_exists = db.Webjini_Bookings.find_one({"jiniId": jiniid, "bookingId": booking_id,"hId":hId})
+        if status == "SUCCESS":
+            print(1)
+            print(booking_exists)
+            if (booking_exists["payment"].get("Status")=="PENDING"):
+                # update
+                print(2)
+                checkindate = booking_exists.get("checkIn")
+                checkoutdate = booking_exists.get("checkOut")
+                bookings = []
+                for ele in booking_exists.get("Bookings"):
+                    bookings.append(ele)
+                # update Inventory
+                print(2)
+                room_Number_allocation(hId,jiniid,bookings,checkindate,checkoutdate,booking_id)
+                updateInventory_decrease(
+                    checkindate, checkoutdate, bookings, jiniid, hId)
             
-#             db.Bookings.find_one_and_update({"ndid": ndid, "hId": hId, "bookingId": booking_id}, {
-#                                             "$set":{
-#                                                 "payment.Status":status,
-#                                                 "payment.payId":"USER DASHBOARD"
-#                                             }})
-#             if status=="SUCCESS":
-#                 total=db.Bookings.find_one({"ndid": ndid, "hId": hId, "bookingId": booking_id})["price"]["Total"]
-#                 db.Bookings.find_one_and_update({"ndid": ndid, "hId": hId, "bookingId": booking_id},{"$set":{"price.amountPay":total}})
-#         else:
-#             db.Bookings.find_one_and_update({"ndid": ndid, "hId": hId, "bookingId": booking_id}, {
-#                                             "$set": {
-#                                                 "payment.Status":status
-#                                             }})
-#         logging.info("True")
-#         return True
-#     except Exception as ex:
-#         logging.error(f"{ex}")
-#         return False, "{}".format(ex)
+            db.Webjini_Bookings.find_one_and_update({"jiniId": jiniid, "hId": hId, "bookingId": booking_id}, {
+                                            "$set":{
+                                                "payment.Status":status,
+                                                "payment.payId":"USER DASHBOARD"
+                                            }})
+            if status=="SUCCESS":
+                total=db.Webjini_Bookings.find_one({"jiniId": jiniid, "hId": hId, "bookingId": booking_id})["price"]["Total"]
+                db.Webjini_Bookings.find_one_and_update({"jiniId": jiniid, "hId": hId, "bookingId": booking_id},{"$set":{"price.amountPay":total}})
+        else:
+            db.Webjini_Bookings.find_one_and_update({"jiniId": jiniid, "hId": hId, "bookingId": booking_id}, {
+                                            "$set": {
+                                                "payment.Status":status
+                                            }})
+        logging.info("True")
+        return True
+    except Exception as ex:
+        logging.error(f"{ex}")
+        return False, "{}".format(ex)
 
 # # ?MODELS DONE
 # def change_booking_checked_in_out_status(token, booking_id, isCheckedin, isCheckout, hId):
@@ -791,17 +792,17 @@ def get_id(booking_count):
 #         return False, "{}".format(ex)
 
 # # ?MODELS NOT REQUIRED
-# def get_dates_in_range(start_date, end_date):
-#     try:
-#         start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
-#         end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
-#         # Calculate the number of days between start_date and end_date
-#         delta = end_date - start_date
-#         # Generate a list of dates within the date range
-#         date_list = [start_date + timedelta(days=i) for i in range(delta.days)]
-#         return date_list
-#     except Exception as e:
-#         logging.error(f"Error in getting date in range:{e}")
+def get_dates_in_range(start_date, end_date):
+    try:
+        start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
+        end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
+        # Calculate the number of days between start_date and end_date
+        delta = end_date - start_date
+        # Generate a list of dates within the date range
+        date_list = [start_date + timedelta(days=i) for i in range(delta.days)]
+        return date_list
+    except Exception as e:
+        logging.error(f"Error in getting date in range:{e}")
 
 
 def getGateways(ndid,hid):

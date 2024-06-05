@@ -55,7 +55,7 @@ class Bookings:
             roomNumbers=booking_dict.get("roomNumbers",[]),
             hId=booking_dict.get("hId"),
             jiniId=booking_dict.get("jiniId"),
-            bookingId=booking_dict.get("bookingId"),
+            bookingId=booking_dict.get("bookingId",""),
             guestInfo=GuestInfo.from_dict(booking_dict.get("guestInfo")),
             adult=booking_dict.get("Adults"),
             kid=booking_dict.get("Kids"),
@@ -70,5 +70,5 @@ class Bookings:
             price=Price.from_dict(booking_dict.get("price")),
             isCheckedIn=booking_dict.get("isCheckedIn"),
             isCheckedOut=booking_dict.get("isCheckedOut"),
-            bookingDate=booking_dict.get("bookingDate"),
+            bookingDate=booking_dict.get("bookingDate",""),
         )
