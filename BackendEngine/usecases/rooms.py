@@ -31,7 +31,7 @@ def add_room(room_details, token):
         room_type = room.roomType
         hId = room_details.get("hId", "")
         room.ndid=ndid
-        number = room_type+"01"
+        number = str(room_type)+"01"
 
         room.roomNumbers = add_roomnumber_in_createprocess(int(room.noOfRooms),int(number))
         available_room = get_room(ndid, hId, room_type)
