@@ -1,7 +1,7 @@
 import jwt
 import logging
 import settings
-
+import string
 import pymongo
 from datetime import datetime, timedelta
 from random import *
@@ -12,8 +12,10 @@ LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(settings.LOG_LEVEL)
 
 client = pymongo.MongoClient(settings.DBURL)
+client1 = pymongo.MongoClient(settings.DBURL1)
 print("===========================Database============================")
 db = client[settings.DBNAME]
+db1 = client[settings.DBNAME1]
 
 def create(data={}):
     # data contains email,password
@@ -36,6 +38,16 @@ def Decode_jwt(token):
     #         raise ValueError("Token has expired")
     
     return data
+
+def createAPIkey():
+    characters = string.ascii_letters + string.digits + "!@#$%^&*()"
+    api_key = ''.join(choice(characters) for _ in range(15))
+    return api_key
+
+def createMessageID():
+    characters = string.ascii_letters + string.digits + "!@#$%^&*()"
+    messageid = ''.join(choice(characters) for _ in range(20))
+    return messageid
 
 
 

@@ -12,6 +12,8 @@ from controllers.price import price_controller
 from controllers.order import order_controller
 from controllers.webjini_website import jini_controller
 
+from controllers.Mailsystem.accountcreation import accountcreation_controller
+
 
 logging.basicConfig(format=settings.LOG_FORMATTER)
 LOGGER = logging.getLogger(__name__)
@@ -28,6 +30,9 @@ app.register_blueprint(price_controller,url_prefix="/price")
 app.register_blueprint(booking_controller,url_prefix="/bookings")
 app.register_blueprint(order_controller,url_prefix="/order")
 app.register_blueprint(jini_controller,url_prefix="/webjini")
+
+#Booking engine
+app.register_blueprint(accountcreation_controller,url_prefix="/mail")
 
 if __name__ == '__main__':
     app.config['DEBUG'] = settings.DEBUG
