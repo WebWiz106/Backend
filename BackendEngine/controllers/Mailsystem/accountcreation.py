@@ -10,10 +10,6 @@ from usecases.Mailsystem import file
 
 accountcreation_controller = Blueprint('accountcreation', __name__)
 
-
-from utils import db
-
-
 @accountcreation_controller.route("/hi")
 def hello():
     return {"Message":"Hi Mail System"}

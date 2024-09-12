@@ -49,6 +49,10 @@ def createMessageID():
     messageid = ''.join(choice(characters) for _ in range(20))
     return messageid
 
+def createChatSessionID():
+    characters = string.ascii_letters + string.digits + "!@#$%^&*()"
+    messageid = ''.join(choice(characters) for _ in range(30))
+    return messageid
 
 
 # def get_ndid(token):

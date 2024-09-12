@@ -13,6 +13,8 @@ from controllers.order import order_controller
 from controllers.webjini_website import jini_controller
 
 from controllers.Mailsystem.accountcreation import accountcreation_controller
+from controllers.ChatBot.chatbot import chatbot_controller
+from controllers.TicketMgmt.ticket import ticket_controller
 
 
 logging.basicConfig(format=settings.LOG_FORMATTER)
@@ -33,6 +35,8 @@ app.register_blueprint(jini_controller,url_prefix="/webjini")
 
 #Booking engine
 app.register_blueprint(accountcreation_controller,url_prefix="/mail")
+app.register_blueprint(chatbot_controller,url_prefix="/chat-bot")
+app.register_blueprint(ticket_controller,url_prefix="/ticket")
 
 if __name__ == '__main__':
     app.config['DEBUG'] = settings.DEBUG
