@@ -16,6 +16,7 @@ from utils import db1
 
 def create_mail_account(data):
     creds = db1.WebjiniMailCreds.find_one({"type":"mail_cred"})
+    jiniId = data.get('jiniid','')
     user_name = data.get('name')
     company_name = data.get('company_name')
     user_email = data.get('email')
@@ -28,6 +29,7 @@ def create_mail_account(data):
     if not fetch_user:
         db1.UserAccount.insert_one({
                 "user_id":str(uuid.uuid4()),
+                "jiniid":jiniId,
                 "domain":"",
                 "company_name":company_name,
                 "user_name":user_name,
@@ -35,7 +37,10 @@ def create_mail_account(data):
                 "user_key":user_key,
                 "account_type":account_type,
                 "from_email":from_email,
-                "from_email_pass":from_email_pass
+                "from_email_pass":from_email_pass,
+                "isHavingBot":False,
+                "isHavingTicket":False,
+                "isHavingMail":True
         })
         return True,"Account Created",user_key
     else:
@@ -47,7 +52,7 @@ def send_email_setup_function(data):
         api_code = data.get("apikey")
 
         fetch_user = db1.UserAccount.find_one({'user_key':api_code})
-        if fetch_user:
+        if fetch_user and fetch_user['isHavingMail']:
             if mail_type=="contact":
                 name = data.get('name',None)
                 user_email = data.get('user_email',None)
@@ -106,7 +111,7 @@ def send_email_setup_function(data):
             return True, "Query Created"
 
         else:
-            return False, "Account Expired or not exists"
+            return False, "Account Expired or not exists or Mail Not Active"
         
 
 def user_contact_query_reply(data):

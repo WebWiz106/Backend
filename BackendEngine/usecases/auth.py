@@ -81,6 +81,7 @@ def register_user_webjini(maintenance_details):
     accesskey =  maintenance_details.get("accesskey")
     password = hashlib.sha256(accesskey.encode("utf-8")).hexdigest()
     accessScope = {
+        "crm":True,
         "cms":True,
         "bookingEngine":True,
         "blogsMgmt":True,
@@ -107,7 +108,7 @@ def register_user_webjini(maintenance_details):
                     }
             
             token = utils.create(data)
-            
+
             db.Webjini_users.insert_one({
                 "emailId":emailId,
                 "jiniId":ndid,
@@ -117,6 +118,7 @@ def register_user_webjini(maintenance_details):
                 "accesskey":password,
                 "isAdmin":True,
                 "accessScope":accessScope,
+                "domain":"",
                 "createdAt":str(datetime.now())
 
             })
@@ -830,7 +832,16 @@ def FetchUserForBookingAuth(token):
 #     return True, "Booking Engine Created successfully"
 
 def create_profile(ndid,hId,maintain_data,domain,website):
-
+    from usecases.Mailsystem import file
+    data = {
+        'jiniid':ndid,
+        'name':maintain_data.get("hotelName"),
+        'company_name':maintain_data.get("hotelName"),
+        'email':maintain_data.get("hotelEmail"),
+        'account_type':"1"
+    }
+    status, message, keysecret = file.create_mail_account(data)
+    
     obj={
         "webjiniId":ndid,
         "domain":domain,
@@ -845,7 +856,7 @@ def create_profile(ndid,hId,maintain_data,domain,website):
             "country":maintain_data.get("hotelCountry"),
             "currency":maintain_data.get("currency"),
         },
-        "toolsAccess":{"website":{"link":website}},
+        "toolsAccess":{"website":{"link":website},"crm":{"secret":keysecret}},
         "thirdPartyAccess":{},
         "hotels":{
             hId:{

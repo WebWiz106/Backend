@@ -3,7 +3,7 @@ import settings
 
 from flask import Flask
 from flask_cors import CORS,cross_origin
-
+from flasgger import Swagger
 from controllers.auth import auth_controller
 from controllers.rooms import room_controller
 from controllers.engine import booking_controller
@@ -22,6 +22,7 @@ LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(settings.LOG_LEVEL)
 
 app = Flask(__name__)
+swagger = Swagger(app)
 CORS(app)
 
 
