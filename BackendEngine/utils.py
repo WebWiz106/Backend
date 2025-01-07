@@ -54,6 +54,9 @@ def createChatSessionID():
     messageid = ''.join(choice(characters) for _ in range(30))
     return messageid
 
+def get_authenticated_user(token):
+    data = Decode_jwt(token)
+    user = data.get("user") or None
 
 # def get_ndid(token):
 #     try:

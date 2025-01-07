@@ -1,17 +1,10 @@
 from flask import Blueprint , jsonify , request
-from flask_cors import CORS,cross_origin
-import utils
-import json
-import pymongo
-import settings
+import json, utils
 from bson import json_util
 from usecases import auth
+from utils import db, get_authenticated_user
 
 auth_controller = Blueprint('auth', __name__)
-
-
-from utils import db
-
 
 @auth_controller.route("/hi")
 def hello1():
@@ -22,20 +15,20 @@ def hello1():
 def getUserWebjini(token):
     try:
         maintenance_details = request.get_json(force=True)
-        ndid = utils.Decode_jwt(token)
-        jiniId = ndid.get("user")
-        email = maintenance_details.get("emailId")
+        jiniId = get_authenticated_user(token)
+        if jiniId is not None:
+            email = maintenance_details.get("emailId")
 
-        user,admin,access = auth.get_users_info(jiniId,email)
-        profile = auth.get_users_profile(jiniId)
-        websiteLink = auth.get_user_links(jiniId)
+            user,admin,access = auth.get_users_info(jiniId,email)
+            profile = auth.get_users_profile(jiniId)
+            websiteLink = auth.get_user_links(jiniId)
 
-        return jsonify({"Status":True,
-                        "Admin":admin, 
-                        "userInfo":json.loads(json_util.dumps(user)),
-                        "websiteLink":websiteLink,
-                        "Profile":json.loads(json_util.dumps(profile)),
-                        "Access":access})
+            return jsonify({"Status":True,
+                            "Admin":admin, 
+                            "userInfo":json.loads(json_util.dumps(user)),
+                            "websiteLink":websiteLink,
+                            "Profile":json.loads(json_util.dumps(profile)),
+                            "Access":access})
     except:
         return jsonify({"Status":False})
 

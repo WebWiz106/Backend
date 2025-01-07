@@ -137,13 +137,14 @@ def login_user_webjini(maintenance_details):
         
         
         users = db.Webjini_users.find_one({"emailId":username,"accesskey":password})
-
+        print(1)
+        print(users)
         if(users!=None):
             data = {
                         "user":users.get("jiniId"),
                         "id":users.get("userId")
                     }
-            
+            print(2)
             token = utils.create(data)
             return True,token,"Login Successfully"
         
